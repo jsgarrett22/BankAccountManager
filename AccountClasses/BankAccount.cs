@@ -16,7 +16,18 @@ namespace AccountClasses
     public class BankAccount
     {
         public string Number { get; set; }
-        public decimal Balance { get; set; }
+        public decimal Balance 
+        {
+            get
+            {
+                decimal balance = 0;
+                foreach (var transaction in Transactions)
+                {
+                    balance += transaction.Amount;
+                }
+                return balance;
+            }
+        }
         public bool OverWithdrawn { get; set; }
         public List<Transaction> Transactions = new List<Transaction>();
 
@@ -24,28 +35,31 @@ namespace AccountClasses
         {
             this.Number = accountNumber;
             Deposit(initialBalance);
-            
         }
 
         public void Withdraw(decimal amount)
         {
-            Transaction newTransaction = new Transaction(DateTime.Now, amount, TransactionType.Withdrawal);
+            // if amount is positive
             if (amount > 0)
             {
-                if (Balance - amount < 0)
+                if (Balance - amount <= -100.00M)
+                {
+                    throw new ArgumentException("Amount to withdrawal must not exceed balance + $100.00.");
+                } 
+                else if (Balance - amount < 0)
                 {
                     OverWithdrawn = true;
+                    Transactions.Add(new Transaction(DateTime.Now, -amount, TransactionType.OverWithdrawal));
                     // applyFee();
-                    if (Balance - amount <= -100.00M)
-                    {
-                        throw new ArgumentException("Amount to withdrawal must not exceed balance + $100.00.");
-                    }
                 }
-                Balance -= amount;
+                else
+                {
+                    Transactions.Add(new Transaction(DateTime.Now, -amount, TransactionType.Deposit));
+                }
             }
             else
             {
-                throw new ArgumentException("Amount to withdrawal must be greater than 0.");
+                throw new ArgumentOutOfRangeException("Amount to withdrawal must be greater than 0.");
             }
         }
 
@@ -57,7 +71,7 @@ namespace AccountClasses
             }
             else if (amount <= 0)
             {
-                throw new ArgumentException("Amount to deposit must be greater than 0.");
+                throw new ArgumentOutOfRangeException("Amount to deposit must be greater than 0.");
             }
             else
             {

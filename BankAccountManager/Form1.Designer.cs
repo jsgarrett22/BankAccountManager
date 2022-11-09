@@ -96,6 +96,7 @@
             // 
             // txtStatus
             // 
+            this.txtStatus.BackColor = System.Drawing.SystemColors.Info;
             this.txtStatus.Location = new System.Drawing.Point(129, 261);
             this.txtStatus.Name = "txtStatus";
             this.txtStatus.ReadOnly = true;
@@ -170,6 +171,7 @@
             // 
             // txtAccNum
             // 
+            this.txtAccNum.BackColor = System.Drawing.SystemColors.Info;
             this.txtAccNum.Location = new System.Drawing.Point(134, 17);
             this.txtAccNum.Name = "txtAccNum";
             this.txtAccNum.ReadOnly = true;
@@ -179,6 +181,7 @@
             // 
             // txtAccBalance
             // 
+            this.txtAccBalance.BackColor = System.Drawing.SystemColors.Info;
             this.txtAccBalance.Location = new System.Drawing.Point(389, 17);
             this.txtAccBalance.Name = "txtAccBalance";
             this.txtAccBalance.ReadOnly = true;

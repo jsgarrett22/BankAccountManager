@@ -22,7 +22,7 @@ namespace AccountClasses
     }
     public enum TransactionType
     {
-        Withdrawal, Deposit, InitialDeposit
+        Withdrawal, Deposit, InitialDeposit, OverWithdrawal
     }
 }
 

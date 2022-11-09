@@ -13,24 +13,23 @@ namespace AccountClasses
  *  the user will not be a charged a fee.
  */
 {
-    public class Account
+    public class BankAccount
     {
         public string Number { get; set; }
-        public string Owner { get; set; }
         public decimal Balance { get; set; }
         public bool OverWithdrawn { get; set; }
         public List<Transaction> Transactions = new List<Transaction>();
 
-        public Account(string accountNumber, string owner, decimal initialBalance)
+        public BankAccount(string accountNumber, decimal initialBalance)
         {
-            this.Owner = owner;
             this.Number = accountNumber;
-            this.Balance = initialBalance;
+            Deposit(initialBalance);
+            
         }
 
         public void Withdraw(decimal amount)
         {
-            Transaction newTransaction = new Transaction(DateTime.Now, amount);
+            Transaction newTransaction = new Transaction(DateTime.Now, amount, TransactionType.Withdrawal);
             if (amount > 0)
             {
                 if (Balance - amount < 0)
@@ -52,7 +51,6 @@ namespace AccountClasses
 
         public void Deposit(decimal amount)
         {
-            Transaction newTransaction = new Transaction(DateTime.Now, amount);
             if (amount >= 10000)
             {
                 throw new Exception("Amount to deposit must be under 10,000.");
@@ -63,7 +61,14 @@ namespace AccountClasses
             }
             else
             {
-                Balance += amount;
+                if (Transactions.Count <= 0)
+                {
+                    Transactions.Add(new Transaction(DateTime.Now, amount, TransactionType.InitialDeposit));
+                }
+                else
+                {
+                    Transactions.Add(new Transaction(DateTime.Now, amount, TransactionType.Deposit));
+                }
             }
         }
 

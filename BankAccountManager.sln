@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankAccountManager", "BankA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountClasses", "AccountClasses\AccountClasses.csproj", "{B91E4F3E-7622-41CE-BEEE-F0047760A820}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{999AD86A-6FD1-4211-ACF2-97CD5F43E319}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{B91E4F3E-7622-41CE-BEEE-F0047760A820}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B91E4F3E-7622-41CE-BEEE-F0047760A820}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B91E4F3E-7622-41CE-BEEE-F0047760A820}.Release|Any CPU.Build.0 = Release|Any CPU
+		{999AD86A-6FD1-4211-ACF2-97CD5F43E319}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{999AD86A-6FD1-4211-ACF2-97CD5F43E319}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{999AD86A-6FD1-4211-ACF2-97CD5F43E319}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{999AD86A-6FD1-4211-ACF2-97CD5F43E319}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

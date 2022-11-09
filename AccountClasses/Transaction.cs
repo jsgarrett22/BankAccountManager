@@ -8,23 +8,21 @@ namespace AccountClasses
         public decimal Amount { get; set; }
         public TransactionType Type { get; set; }
 
-        public Transaction(DateTime date, decimal amount)
+        public Transaction(DateTime date, decimal amount, TransactionType type)
         {
             Date = date;
             Amount = amount;
-            if (amount >= 0)
-            {
-                this.Type = TransactionType.Deposit;
-            }
-            else
-            {
-                this.Type = TransactionType.Withdrawal;
-            }
+            Type = type;
+        }
+
+        public override string ToString()
+        {
+            return $"Date: {Date}\t\tAmount: {Amount}\t\tType: {Type}";
         }
     }
     public enum TransactionType
     {
-        Withdrawal, Deposit
+        Withdrawal, Deposit, InitialDeposit
     }
 }
 

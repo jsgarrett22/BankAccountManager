@@ -28,7 +28,7 @@ namespace BankAccountManager
             try
             {
                 // CREATE NEW ACCOUNT
-
+                
                 // TRY TO PARSE 
                 decimal.TryParse(txtTransAmt.Text, out decimal transAmt);
                 

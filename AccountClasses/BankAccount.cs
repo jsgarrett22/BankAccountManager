@@ -16,7 +16,7 @@ namespace AccountClasses
     public class BankAccount
     {
         public string Number { get; set; }
-        public decimal Balance 
+        public decimal Balance
         {
             get
             {
@@ -28,6 +28,19 @@ namespace AccountClasses
                 return balance;
             }
         }
+        public AccountStatus Status { 
+            get
+            {
+                if (OverWithdrawn)
+                {
+                    return AccountStatus.Overdrawn;
+                }
+                else
+                {
+                    return AccountStatus.Ok;
+                }
+            }
+        }
         public bool OverWithdrawn { get; set; }
         public List<Transaction> Transactions = new List<Transaction>();
 
@@ -37,34 +50,40 @@ namespace AccountClasses
             Deposit(initialBalance);
         }
 
-        public void Withdraw(decimal amount)
+        public AccountStatus Withdrawal(decimal amount)
         {
-            // if amount is positive
+            AccountStatus status;
             if (amount > 0)
             {
                 if (Balance - amount <= -100.00M)
                 {
+                    status = AccountStatus.InsufficientFunds;
                     throw new ArgumentException("Amount to withdrawal must not exceed balance + $100.00.");
                 } 
                 else if (Balance - amount < 0)
                 {
                     OverWithdrawn = true;
+                    status = AccountStatus.Overdrawn;
                     Transactions.Add(new Transaction(DateTime.Now, -amount, TransactionType.OverWithdrawal));
                     // applyFee();
                 }
                 else
                 {
-                    Transactions.Add(new Transaction(DateTime.Now, -amount, TransactionType.Deposit));
+                    status = AccountStatus.Ok;
+                    Transactions.Add(new Transaction(DateTime.Now, -amount, TransactionType.Withdrawal));
                 }
             }
             else
             {
                 throw new ArgumentOutOfRangeException("Amount to withdrawal must be greater than 0.");
             }
+            return status;
         }
 
-        public void Deposit(decimal amount)
+        public AccountStatus Deposit(decimal amount)
         {
+            AccountStatus status;
+
             if (amount >= 10000)
             {
                 throw new ArgumentException("Amount to deposit must be under 10,000.");
@@ -77,19 +96,27 @@ namespace AccountClasses
             {
                 if (Transactions.Count <= 0)
                 {
+                    status = AccountStatus.Ok;
                     Transactions.Add(new Transaction(DateTime.Now, amount, TransactionType.InitialDeposit));
                 }
                 else
                 {
+                    status = AccountStatus.Ok;
                     Transactions.Add(new Transaction(DateTime.Now, amount, TransactionType.Deposit));
                 }
             }
+            return status;
         }
 
         public override string ToString()
         {
             return $"Balance:\t\t{Balance}" +
                 $"\nOverWithdrawn?\t\t{OverWithdrawn}";
+        }
+
+        public enum AccountStatus
+        {
+            Ok, Overdrawn, InsufficientFunds, DepositTooLarge
         }
     }
 }

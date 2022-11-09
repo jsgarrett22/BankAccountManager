@@ -31,8 +31,8 @@ namespace UnitTests
         public void InvalidWithdrawalTest()
         {
             BankAccount account = new BankAccount("000302019", 1362.59M);
-            Assert.ThrowsException<ArgumentOutOfRangeException>(() => account.Withdraw(0M));
-            Assert.ThrowsException<ArgumentOutOfRangeException>(() => account.Withdraw(-10000M));
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => account.Withdrawal(0M));
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => account.Withdrawal(-10000M));
         }
 
         [TestMethod]
@@ -40,7 +40,7 @@ namespace UnitTests
         {
             // Withdrawal $100.00
             BankAccount account = new BankAccount("000302019", 1362.59M);
-            account.Withdraw(100.00M);
+            account.Withdrawal(100.00M);
             Assert.AreEqual(1262.59M, account.Balance);
         }
 
@@ -49,8 +49,8 @@ namespace UnitTests
         {
             BankAccount account = new BankAccount("000302019", 1362.59M);
             BankAccount account2 = new BankAccount("000302019", 1362.59M);
-            account.Withdraw(1412.59M);
-            account2.Withdraw(1462.58M);
+            account.Withdrawal(1412.59M);
+            account2.Withdrawal(1462.58M);
             Assert.AreEqual(-50.00M, account.Balance);
             Assert.AreEqual(-99.99M, account2.Balance);
         }
@@ -60,7 +60,7 @@ namespace UnitTests
         {
             // Over-Withdrawal of at least $100.00
             BankAccount account = new BankAccount("000302019", 1362.59M);
-            Assert.ThrowsException<ArgumentException>(() => account.Withdraw(1462.59M));
+            Assert.ThrowsException<ArgumentException>(() => account.Withdrawal(1462.59M));
         }
 
         // DEPOSIT TESTS

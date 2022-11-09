@@ -38,14 +38,14 @@ namespace AccountClasses
                     // applyFee();
                     if (Balance - amount <= -100.00M)
                     {
-                        throw new Exception("Amount to withdrawal must not exceed balance + $100.00.");
+                        throw new ArgumentException("Amount to withdrawal must not exceed balance + $100.00.");
                     }
                 }
                 Balance -= amount;
             }
             else
             {
-                throw new Exception("Amount to withdrawal must be greater than 0.");
+                throw new ArgumentException("Amount to withdrawal must be greater than 0.");
             }
         }
 
@@ -53,11 +53,11 @@ namespace AccountClasses
         {
             if (amount >= 10000)
             {
-                throw new Exception("Amount to deposit must be under 10,000.");
+                throw new ArgumentException("Amount to deposit must be under 10,000.");
             }
             else if (amount <= 0)
             {
-                throw new Exception("Amount to deposit must be greater than 0.");
+                throw new ArgumentException("Amount to deposit must be greater than 0.");
             }
             else
             {

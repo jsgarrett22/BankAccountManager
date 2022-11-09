@@ -1,7 +1,6 @@
 ﻿using AccountClasses;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Security.Principal;
 
 namespace UnitTests
 {
@@ -29,8 +28,18 @@ namespace UnitTests
         }
 
         [TestMethod]
-        public void TestOverWithdrawal()
+        public void Over10000Test()
         {
+            BankAccount account = new BankAccount("000302019", 1362.59M);
+            Assert.ThrowsException<ArgumentException>(() => account.Deposit(10000M));
+        }
+
+        [TestMethod]
+        public void NegativeDepositTest()
+        {
+            BankAccount account = new BankAccount("000302019", 1362.59M);
+            Assert.ThrowsException<ArgumentException>(() => account.Deposit(0));
+            Assert.ThrowsException<ArgumentException>(() => account.Deposit(-10000M));
         }
     }
 }

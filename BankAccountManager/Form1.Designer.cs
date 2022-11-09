@@ -1,6 +1,6 @@
 ﻿namespace BankAccountManager
 {
-    partial class Form1
+    partial class Main
     {
         /// <summary>
         /// Required designer variable.
@@ -181,7 +181,7 @@
             // 
             // BottomGroupPanel
             // 
-            this.BottomGroupPanel.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.BottomGroupPanel.BackColor = System.Drawing.SystemColors.Highlight;
             this.BottomGroupPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.BottomGroupPanel.Controls.Add(this.button4);
             this.BottomGroupPanel.Controls.Add(this.button3);
@@ -219,7 +219,7 @@
             this.button4.Text = "Close";
             this.button4.UseVisualStyleBackColor = true;
             // 
-            // Form1
+            // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -232,7 +232,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "Form1";
+            this.Name = "Main";
             this.Text = "Bank Account Manager";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

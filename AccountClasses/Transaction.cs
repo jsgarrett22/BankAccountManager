@@ -17,7 +17,7 @@ namespace AccountClasses
 
         public override string ToString()
         {
-            return $"Date: {Date}\t\tAmount: {Amount}\t\tType: {Type}";
+            return $"Date: {Date.ToShortDateString()}\t\tAmount: {Amount}\t\tType: {Type}";
         }
     }
     public enum TransactionType

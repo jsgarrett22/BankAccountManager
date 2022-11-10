@@ -28,7 +28,8 @@ namespace AccountClasses
                 return balance;
             }
         }
-        public AccountStatus Status { 
+        public AccountStatus Status
+        {
             get
             {
                 if (OverWithdrawn)
@@ -58,8 +59,7 @@ namespace AccountClasses
                 if (Balance - amount <= -100.00M)
                 {
                     status = AccountStatus.InsufficientFunds;
-                    throw new ArgumentException("Amount to withdrawal must not exceed balance + $100.00.");
-                } 
+                }
                 else if (Balance - amount < 0)
                 {
                     OverWithdrawn = true;
@@ -86,10 +86,11 @@ namespace AccountClasses
 
             if (amount >= 10000)
             {
-                throw new ArgumentException("Amount to deposit must be under 10,000.");
+                status = AccountStatus.DepositTooLarge;
             }
             else if (amount <= 0)
             {
+                status = AccountStatus.Failed;
                 throw new ArgumentOutOfRangeException("Amount to deposit must be greater than 0.");
             }
             else
@@ -108,15 +109,9 @@ namespace AccountClasses
             return status;
         }
 
-        public override string ToString()
-        {
-            return $"Balance:\t\t{Balance}" +
-                $"\nOverWithdrawn?\t\t{OverWithdrawn}";
-        }
-
         public enum AccountStatus
         {
-            Ok, Overdrawn, InsufficientFunds, DepositTooLarge
+            Ok, Overdrawn, InsufficientFunds, DepositTooLarge, Failed
         }
     }
 }

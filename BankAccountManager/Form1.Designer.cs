@@ -37,16 +37,17 @@
             this.btnSubmit = new System.Windows.Forms.Button();
             this.txtTransAmt = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioWithdrawal = new System.Windows.Forms.RadioButton();
+            this.radioDeposit = new System.Windows.Forms.RadioButton();
             this.listTransactions = new System.Windows.Forms.ListView();
             this.txtAccNum = new System.Windows.Forms.TextBox();
             this.txtAccBalance = new System.Windows.Forms.TextBox();
             this.BottomGroupPanel = new System.Windows.Forms.Panel();
+            this.btnReset = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnStatus = new System.Windows.Forms.Button();
             this.btnHistory = new System.Windows.Forms.Button();
-            this.btnReset = new System.Windows.Forms.Button();
+            this.Transactions = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1.SuspendLayout();
             this.BottomGroupPanel.SuspendLayout();
             this.SuspendLayout();
@@ -85,8 +86,8 @@
             this.groupBox1.Controls.Add(this.btnSubmit);
             this.groupBox1.Controls.Add(this.txtTransAmt);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.radioButton2);
-            this.groupBox1.Controls.Add(this.radioButton1);
+            this.groupBox1.Controls.Add(this.radioWithdrawal);
+            this.groupBox1.Controls.Add(this.radioDeposit);
             this.groupBox1.Location = new System.Drawing.Point(41, 57);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(474, 296);
@@ -138,31 +139,36 @@
             this.label4.TabIndex = 2;
             this.label4.Text = "Transaction Amount:";
             // 
-            // radioButton2
+            // radioWithdrawal
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(21, 60);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(78, 17);
-            this.radioButton2.TabIndex = 1;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Withdrawal";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioWithdrawal.AutoSize = true;
+            this.radioWithdrawal.Location = new System.Drawing.Point(21, 60);
+            this.radioWithdrawal.Name = "radioWithdrawal";
+            this.radioWithdrawal.Size = new System.Drawing.Size(78, 17);
+            this.radioWithdrawal.TabIndex = 1;
+            this.radioWithdrawal.TabStop = true;
+            this.radioWithdrawal.Text = "Withdrawal";
+            this.radioWithdrawal.UseVisualStyleBackColor = true;
             // 
-            // radioButton1
+            // radioDeposit
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(21, 37);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(61, 17);
-            this.radioButton1.TabIndex = 0;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Deposit";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioDeposit.AutoSize = true;
+            this.radioDeposit.Location = new System.Drawing.Point(21, 37);
+            this.radioDeposit.Name = "radioDeposit";
+            this.radioDeposit.Size = new System.Drawing.Size(61, 17);
+            this.radioDeposit.TabIndex = 0;
+            this.radioDeposit.TabStop = true;
+            this.radioDeposit.Text = "Deposit";
+            this.radioDeposit.UseVisualStyleBackColor = true;
             // 
             // listTransactions
             // 
+            this.listTransactions.Alignment = System.Windows.Forms.ListViewAlignment.Left;
+            this.listTransactions.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Transactions});
+            this.listTransactions.GridLines = true;
             this.listTransactions.HideSelection = false;
+            this.listTransactions.LabelWrap = false;
             this.listTransactions.Location = new System.Drawing.Point(535, 57);
             this.listTransactions.Name = "listTransactions";
             this.listTransactions.Size = new System.Drawing.Size(228, 296);
@@ -203,6 +209,16 @@
             this.BottomGroupPanel.Size = new System.Drawing.Size(722, 62);
             this.BottomGroupPanel.TabIndex = 7;
             // 
+            // btnReset
+            // 
+            this.btnReset.Location = new System.Drawing.Point(515, 19);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(75, 23);
+            this.btnReset.TabIndex = 3;
+            this.btnReset.Text = "Reset";
+            this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            // 
             // btnClose
             // 
             this.btnClose.Location = new System.Drawing.Point(619, 19);
@@ -221,6 +237,7 @@
             this.btnStatus.TabIndex = 1;
             this.btnStatus.Text = "Get Status";
             this.btnStatus.UseVisualStyleBackColor = true;
+            this.btnStatus.Click += new System.EventHandler(this.btnStatus_Click);
             // 
             // btnHistory
             // 
@@ -230,16 +247,11 @@
             this.btnHistory.TabIndex = 0;
             this.btnHistory.Text = "Get History";
             this.btnHistory.UseVisualStyleBackColor = true;
+            this.btnHistory.Click += new System.EventHandler(this.btnHistory_Click);
             // 
-            // btnReset
+            // Transactions
             // 
-            this.btnReset.Location = new System.Drawing.Point(515, 19);
-            this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(75, 23);
-            this.btnReset.TabIndex = 3;
-            this.btnReset.Text = "Reset";
-            this.btnReset.UseVisualStyleBackColor = true;
-            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            this.Transactions.Text = "Transactions";
             // 
             // Main
             // 
@@ -275,8 +287,8 @@
         private System.Windows.Forms.Button btnSubmit;
         private System.Windows.Forms.TextBox txtTransAmt;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton radioWithdrawal;
+        private System.Windows.Forms.RadioButton radioDeposit;
         private System.Windows.Forms.ListView listTransactions;
         private System.Windows.Forms.TextBox txtAccNum;
         private System.Windows.Forms.TextBox txtAccBalance;
@@ -285,6 +297,7 @@
         private System.Windows.Forms.Button btnStatus;
         private System.Windows.Forms.Button btnHistory;
         private System.Windows.Forms.Button btnReset;
+        private System.Windows.Forms.ColumnHeader Transactions;
     }
 }
 
